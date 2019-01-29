@@ -60,6 +60,9 @@ for firstdir in os.listdir(path):
                 #print(filecount)
                 catadata[catatemrow, catatemcol] = catadata[catatemrow, catatemcol]/filecount
 
+                #if seconddir[3:] == "1":
+
+
 
 ###################################read the nocatadata####################################
 catatemrow = 1
