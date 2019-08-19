@@ -1,6 +1,6 @@
 class readc(object):
 
-    def __init__(self, dir, _catarow, _catacol, _nocatarow, _nocatacol):
+    def __init__(self, catadir, nocatadir, _catarow, _catacol, _nocatarow, _nocatacol):
         import os
         #import sys
         #from cProfile import label
@@ -16,7 +16,7 @@ class readc(object):
 
         path = os.path.abspath('.')
         path += "/"
-        path += dir
+        path += catadir
 
         #####################################read the self.catadata###########################
         catatemrow = 1
@@ -85,10 +85,16 @@ class readc(object):
         col = _nocatacol
         catatemrow = 1
 
+        path = os.path.abspath('.')
+        path += "/"
+        path += nocatadir
+
         self.nocatagap = np.ones((row-1, 2))
 
         self.nocatadata = np.zeros(shape = (row, col))
         for firstdir in os.listdir(path):
+            if filedir[-3:] != 'out':
+                continue
             firstdirname = path + "/" +firstdir
             #print(firstdir)
 
@@ -126,8 +132,10 @@ class readc(object):
 
                         filecount = 0
                         for filedir in os.listdir(seconddirname):
+                            if filedir[-3:] != 'out':
+                                continue
                             filename = seconddirname + "/" + filedir
-                            #print(filedir)
+                            #print(filename)
                             with open(filename) as f:
                                 datastr = f.read().split()
                                 for str in datastr:
